@@ -21,6 +21,15 @@ const arrow_right = document.querySelector(".arrow_right");
 const arrow_left = document.querySelector(".arrow_left");
 const dots = document.querySelectorAll('.dot');
 
+let currentIndex = 0;
+
+function updateCarousel(index, direction) {
+	//correction du bug pour la première et la dernière image
+	if (currentIndex === -1 && direction === 'left') {
+	  currentIndex = slides.length - 1;
+  } else if (currentIndex === slides.length && direction === 'right') {
+	  currentIndex = 0;
+  }}
 
 arrow_left.addEventListener('click', function () {
 	updateCarousel(currentIndex, 'left');
