@@ -15,28 +15,54 @@ const slides = [
 		"image":"slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
-]
+];
 
-const arrow_right = document.querySelector(".arrow_right");
-const arrow_left = document.querySelector(".arrow_left");
+const bannerImg = document.querySelector('.banner-img');
+const arrow_right = document.querySelector('.arrow_right');
+const arrow_left = document.querySelector('.arrow_left');
 const dots = document.querySelectorAll('.dot');
 
 let currentIndex = 0;
 
+//dots
+function updateDots(index) {
+    dots.forEach((dot, i) => {
+        if (i === index) {
+            dot.classList.add('dot_selected'); 
+        } else {
+            dot.classList.remove('dot_selected'); 
+        }
+    });
+}
+
+//mise a jours du carrousel
 function updateCarousel(index, direction) {
-	//correction du bug pour la première et la dernière image
 	if (currentIndex === -1 && direction === 'left') {
 	  currentIndex = slides.length - 1;
   } else if (currentIndex === slides.length && direction === 'right') {
 	  currentIndex = 0;
   }}
 
+// mise à jour de l'image
+const imagePath = `assets/images/slideshow/${slides[currentIndex].image}`;
+bannerImg.src = imagePath;
+bannerImg.alt = `Slide ${currentIndex + 1}`;
+
+
+//texte 
+const tagLine = slides[currentIndex].tagLine;
+    document.querySelector('p').innerHTML = tagLine;
+
+
 arrow_left.addEventListener('click', function () {
+	currentIndex = (currentIndex - 1)
 	updateCarousel(currentIndex, 'left');
+	updateDots(currentIndex);
 });
 
 arrow_right.addEventListener('click', function (){
+	currentIndex = (currentIndex + 1);
 	updateCarousel(currentIndex, 'right');
     updateDots(currentIndex);
-})
+});
 
