@@ -20,11 +20,20 @@ const slides = [
 const bannerImg = document.querySelector('.banner-img');
 const arrow_right = document.querySelector('.arrow_right');
 const arrow_left = document.querySelector('.arrow_left');
-const dots = document.querySelectorAll('.dot');
+const dots = document.querySelector('.dots');
 
 let currentIndex = 0;
 
 //dots
+function affichagedots(){
+for(let i = 0; i < slides.length; i ++){
+	const dot = document.createElement('div');
+	dot.classList.add('dot');
+	dots.appendChild(dot);
+}
+}
+affichagedots();
+
 function updateDots(index) {
     dots.forEach((dot, i) => {
         if (i === index) {
@@ -39,6 +48,7 @@ function updateDots(index) {
 function updateCarousel(index, direction) {
 	if (currentIndex === -1 && direction === 'left') {
 	  currentIndex = slides.length - 1;
+	  console.log(currentIndex)
   } else if (currentIndex === slides.length && direction === 'right') {
 	  currentIndex = 0;
   }
