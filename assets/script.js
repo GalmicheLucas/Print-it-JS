@@ -30,18 +30,28 @@ for(let i = 0; i < slides.length; i ++){
 	const dot = document.createElement('div');
 	dot.classList.add('dot');
 	dots.appendChild(dot);
+	
+	// Ajoute un écouteur d'événements pour chaque dot
+	dot.addEventListener('click', function() {
+		currentIndex = i;
+		updateCarousel(currentIndex);
+		updateDots(currentIndex);
+	});
 }
 }
-affichagedots();
+affichagedots()
+	;
 
 function updateDots(index) {
-    dots.forEach((dot, i) => {
+	const allDots = document.querySelectorAll('.dot');
+	allDots.forEach((dot, i)=> {
         if (i === index) {
             dot.classList.add('dot_selected'); 
         } else {
             dot.classList.remove('dot_selected'); 
         }
     });
+    
 }
 
 //mise a jours du carrousel
